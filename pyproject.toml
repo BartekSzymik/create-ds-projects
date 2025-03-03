@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Python tool to create folders and files structure for DataScience project"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "rich>=13.9.4",
+    "typer>=0.15.2",
+]
 
 [dependency-groups]
 dev = [
