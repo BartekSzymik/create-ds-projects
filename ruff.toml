@@ -3,7 +3,8 @@ target-version = 'py313'
 fix = false
 include = [
     "conftest/**/*.py",
-    "app/**/*.py",
+    "src/**/*.py",
+    "helpers/**/*.py",
     "tests/**/*.py"
 ]
 
