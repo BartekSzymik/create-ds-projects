@@ -31,13 +31,13 @@ class ProjectGenerator:
 
         This ensures that empty directories are tracked in version control.
         """
-        console.print("[blue]📂 Creating project directory structure...[/blue]")
+        console.print("[blue] Creating project directory structure...[/blue]")
         for folder in self.structure:
             folder_path: str = os.path.join(self.project_path, folder)
             os.makedirs(folder_path, exist_ok=True)  # Create directories
             with open(os.path.join(folder_path, ".gitkeep"), "w") as f:
                 f.write("")  # Create an empty .gitkeep file
-        console.print("[green]✅ Project directory structure created![/green]")
+        console.print("[green] Project directory structure created![/green]")
 
     def create_files(self) -> None:
         """Creates essential project files.
@@ -45,20 +45,20 @@ class ProjectGenerator:
         Reads the predefined file templates and writes them to the appropriate
         locations within the project structure.
         """
-        console.print("[blue]📝 Generating configuration files...[/blue]")
+        console.print("[blue] Generating configuration files...[/blue]")
         for file, content in self.files.items():
             file_path: str = os.path.join(self.project_path, file)
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)  # Ensure directories exist
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
             with open(file_path, "w", encoding="utf-8") as f:
-                f.write(content)  # Write content to the file
-        console.print("[green]✅ Configuration files created![/green]")
+                f.write(content)
+        console.print("[green] Configuration files created![/green]")
 
     def install_dependencies(self) -> None:
         """Installs dependencies using the `uv add` command.
 
         Reads dependencies from `requirements.txt` and installs them.
         """
-        console.print("[blue]📦 Installing dependencies...[/blue]")
+        console.print("[blue] Installing dependencies...[/blue]")
         requirements_path: str = os.path.join(self.project_path, "requirements.txt")
         with open(requirements_path, "r", encoding="utf-8") as f:
             self.dependencies = [line.strip() for line in f.readlines() if line.strip()]
@@ -66,21 +66,21 @@ class ProjectGenerator:
         if self.dependencies:
             uv_command: List[str] = ["uv", "add"] + self.dependencies
             subprocess.run(uv_command, check=True, cwd=self.project_path)
-            console.print("[green]✅ Dependencies installed successfully![/green]")
+            console.print("[green] Dependencies installed successfully![/green]")
 
     def create_pyproject_toml(self) -> None:
         """Generates a `pyproject.toml` file using the predefined template.
 
         The template is formatted with the project name and dependencies.
         """
-        console.print("[blue]📜 Generating pyproject.toml...[/blue]")
+        console.print("[blue] Generating pyproject.toml...[/blue]")
         pyproject_content: str = PYPROJECT_TEMPLATE.format(
             project_name=self.project_name, dependencies=self.dependencies
         )
         pyproject_path: str = os.path.join(self.project_path, "pyproject.toml")
         with open(pyproject_path, "w", encoding="utf-8") as f:
             f.write(pyproject_content)  # Write content to the file
-        console.print("[green]✅ pyproject.toml file created![/green]")
+        console.print("[green] pyproject.toml file created![/green]")
 
     def generate_project(self) -> None:
         """Generates the entire project.
@@ -91,9 +91,9 @@ class ProjectGenerator:
         - Installing dependencies
         - Generating the `pyproject.toml` file
         """
-        console.print(f"[bold cyan]🚀 Generating project '{self.project_name}'...[/bold cyan]")
+        console.print(f"[bold cyan] Generating project '{self.project_name}'...[/bold cyan]")
         self.create_structure()
         self.create_files()
         self.install_dependencies()
         self.create_pyproject_toml()
-        console.print(f"[bold green]🎉 Project '{self.project_name}' has been successfully generated![/bold green]")
+        console.print(f"[bold green] Project '{self.project_name}' has been successfully generated![/bold green]")

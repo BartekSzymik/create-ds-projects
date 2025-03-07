@@ -28,7 +28,7 @@ def create_ds(project_name: str) -> None:
     console.print(f"[green]📂 Creating project: {project_name}[/green]")
     generator = ProjectGenerator(project_name)
     generator.generate_project()
-    console.print(f"[bold green]✅ Project {project_name} has been generated successfully![/bold green]")
+    console.print(f"[bold green] Project {project_name} has been generated successfully![/bold green]")
 
 
 if __name__ == "__main__":
