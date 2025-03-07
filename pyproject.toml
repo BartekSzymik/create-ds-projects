@@ -12,7 +12,11 @@ readme = "README.md"
 license = "Beerware"
 requires-python = ">=3.13"
 dependencies = [
+    "matplotlib>=3.10.1",
+    "numpy>=2.2.3",
+    "pandas>=2.2.3",
     "rich>=13.9.4",
+    "scikit-learn>=1.6.1",
     "typer>=0.15.2",
 ]
 
@@ -24,13 +28,6 @@ create_ds = "src.commands:app"
 
 [project.urls]
 Home = "https://github.com/BartekSzymik/create-ds-projects"
-
-classifiers = [
-    "Intended Audience :: Developers",
-    "License :: THE BEER-WARE LICENSE",
-    "Programming Language :: Python :: 3",
-    "Topic :: Software Development :: Libraries :: Python Modules",
-]
 
 [dependency-groups]
 dev = [
