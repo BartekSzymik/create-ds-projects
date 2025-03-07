@@ -13,3 +13,4 @@ wheels/
 
 .vscode
 .DS_store
+.coverage
